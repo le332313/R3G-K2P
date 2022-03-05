@@ -16,7 +16,7 @@ on:
     branches:
       - main
     paths:
-      - 'build/Lede_R3G/start-up/start'
+      - 'build/Lede_K2P/start-up/start'
 
 env:
   Github: https://github.com/${{github.repository}}
@@ -40,7 +40,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        target: [Lede_R3G]
+        target: [Lede_K2P]
         
         # [Lede_source,Lienol_source,Mortal_source,Tianling_source,openwrt_amlogic]
 
@@ -88,7 +88,7 @@ jobs:
         elif [[ "${REPO_BRANCH}" == "openwrt-18.06" ]]; then
           echo "ZZZ=package/emortal/default-settings/files/99-default-settings" >> $GITHUB_ENV
           echo "CODE=Tianling" >> $GITHUB_ENV
-          echo "OpenWrt_name=tl-18.06" >> $GITHUB_ENV
+          echo "OpenWrt_name=18.06_tl" >> $GITHUB_ENV
         elif [[ "${REPO_BRANCH}" == "openwrt-21.02" ]]; then
           echo "ZZZ=package/emortal/default-settings/files/99-default-settings" >> $GITHUB_ENV
           echo "CODE=Mortal" >> $GITHUB_ENV
