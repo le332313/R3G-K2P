@@ -16,7 +16,7 @@ on:
     branches:
       - main
     paths:
-      - 'build/Lede_K2P/start-up/start'
+      - 'build/Lede_R3G/start-up/start'
 
 env:
   Github: https://github.com/${{github.repository}}
@@ -40,7 +40,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        target: [Lede_K2P]
+        target: [Lede_R3G]
         
         # [Lede_source,Lienol_source,Mortal_source,Tianling_source,openwrt_amlogic]
 
@@ -274,6 +274,7 @@ jobs:
         path: ${{ env.FIRMWARE }}
     
     - name: 上传固件到「奶牛快传」
+      continue-on-error: true
       if: steps.organizer.outputs.status == 'success' && env.UPLOAD_COWTRANSFER == 'true'
       run: |
         curl -fsSL git.io/file-transfer | sh
@@ -283,6 +284,7 @@ jobs:
         echo "::warning file=cowtransfer.com::$(cat cowtransfer.log | grep https)"
 
     - name: 上传固件到「WeTransfer」
+      continue-on-error: true
       if: steps.organizer.outputs.status == 'success' && env.UPLOAD_WETRANSFER == 'true'
       run: |
         curl -fsSL git.io/file-transfer | sh
